@@ -9,10 +9,32 @@
 import UIKit
 import CoreLocation
 
+enum Section {
+    case condition
+    case forecast
+}
+
 class WeatherTableViewController: UITableViewController, CLLocationManagerDelegate {
     
+    let sections: [Section] = [.condition, .forecast]
+    
     let locationManager = CLLocationManager()
-
+    
+    var cityName = ""
+    
+    var item: Item? = nil {
+        didSet {
+            self.condition = self.item!.condition
+            self.forecast = self.item!.forecast
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    var condition: Item.Condition? = nil
+    var forecast: [Item.Forecast]? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,8 +53,9 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
             }
             
             guard let cityName = city else { return }
+            self.cityName = cityName
             ApiManager.share.getWeatherInfo(city: cityName)
-            print("city:", cityName)
+            
         }
     }
     
@@ -61,31 +84,71 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 0
+        return sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 0
+        switch sections[section] {
+        case .condition:
+            return 1
+        case .forecast:
+            return 1
+        }
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
         
-
-        return cell
+        switch sections[indexPath.section] {
+        case .condition:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherTableViewCell", for: indexPath) as! WeatherTableViewCell
+            
+            cell.cityLabel.text = cityName
+            
+            
+            if item != nil {
+                
+                let highTemp = self.fahrenheitToCelsius(fahrenheit: (item?.forecast.first?.high)!)
+                let lowTemp = self.fahrenheitToCelsius(fahrenheit: (item?.forecast.first?.low)!)
+                let temp = self.fahrenheitToCelsius(fahrenheit: (item?.condition.temp)!)
+                
+                cell.dayLabel.text = item?.forecast.first?.day
+                cell.statusLabel.text = item?.condition.text
+                cell.highTempLabel.text = highTemp
+                cell.lowTempLabel.text = lowTemp
+                cell.tempLabel.text = temp
+                cell.todayLabel.text = "Today"
+            }
+            
+            return cell
+        case .forecast:
+            return UITableViewCell()
+        }
+ 
     }
 }
 
 extension WeatherTableViewController: ApiManagerDelegate {
 
     func manager(_ manager: ApiManager, didGet data: Item) {
-        print(data)
+    
+        self.item = data
+        print(self.item)
+//        let condition = data.condition
+//        let forecast = data.forecast
+////        print(data)
+//        print(condition)
+//        print(forecast)
     }
     
     func manager(_ manager: ApiManager, didFailWith error: ApiManagerError) {
         
+    }
+    
+    func fahrenheitToCelsius(fahrenheit: String) -> String {
+        let numberFormatter = NumberFormatter()
+        let number = numberFormatter.number(from: fahrenheit)
+        let conversion = ((number?.floatValue)! - 32) / 1.8
+        return String(Int(conversion)) + " ℃"
     }
 }
