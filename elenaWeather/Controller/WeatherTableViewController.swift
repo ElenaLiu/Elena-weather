@@ -15,6 +15,8 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        ApiManager.share.delegate = self
 
         setUpLocationManager()
         
@@ -29,6 +31,7 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
             }
             
             guard let cityName = city else { return }
+            ApiManager.share.getWeatherInfo(city: cityName)
             print("city:", cityName)
         }
     }
@@ -73,5 +76,16 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
         
 
         return cell
+    }
+}
+
+extension WeatherTableViewController: ApiManagerDelegate {
+    
+    func ApiManager(_ manager: ApiManager, didGet data: WeatherResult) {
+        
+    }
+    
+    func ApiManager(_ manager: ApiManager, didFailWith error: ApiManagerError) {
+        
     }
 }
