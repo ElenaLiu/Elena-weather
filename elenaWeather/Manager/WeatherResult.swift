@@ -16,25 +16,26 @@ struct WeatherResult: Codable {
             var channel: Channel
             struct Channel: Codable {
                 var item: Item
-                struct Item: Codable {
-                    var condition: Condition
-                    struct Condition: Codable {
-                        var code: String
-                        var date: String
-                        var temp: String
-                        var text: String
-                    }
-                    var forecast: [Forecast]
-                    struct Forecast: Codable {
-                        var code: String
-                        var date: String
-                        var day: String
-                        var high: String
-                        var low: String
-                        var text: String
-                    }
-                }
             }
         }
+    }
+}
+
+struct Item: Codable {
+    var condition: Condition
+    struct Condition: Codable {
+        var code: String
+        var date: String
+        var temp: String
+        var text: String
+    }
+    var forecast: [Forecast]
+    struct Forecast: Codable {
+        var code: String
+        var date: String
+        var day: String
+        var high: String
+        var low: String
+        var text: String
     }
 }

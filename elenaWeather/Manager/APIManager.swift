@@ -10,16 +10,15 @@ import Foundation
 
 protocol ApiManagerDelegate: class {
     
-    func ApiManager(_ manager: ApiManager, didGet data: WeatherResult)
+    func manager(_ manager: ApiManager, didGet data: Item)
     
-    func ApiManager(_ manager: ApiManager, didFailWith error: ApiManagerError)
+    func manager(_ manager: ApiManager, didFailWith error: ApiManagerError)
 }
-
-
 
 enum ApiManagerError: Error {
     
     case convertError
+    case dataTaskError
 }
 
 class ApiManager {
@@ -35,18 +34,17 @@ class ApiManager {
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             let decoder = JSONDecoder()
             
-            if let error = error {
+            if error != nil {
+                self.delegate?.manager(self, didFailWith: ApiManagerError.dataTaskError)
                 return
             }
             
             if let data = data,
                 let weatherResult = try? decoder.decode(WeatherResult.self, from: data)
             {
-                print("1111\(weatherResult)")
-//                self.delegate?.ApiManager(self, didGet: WeatherResult)
+                self.delegate?.manager(self, didGet: weatherResult.query.results.channel.item)
             }else {
-                print(error?.localizedDescription)
-//                self.delegate?.storeProvider(self, didFailWith: StoreProviderError.convertError)
+                self.delegate?.manager(self, didFailWith: ApiManagerError.convertError)
             }
         }
         task.resume()

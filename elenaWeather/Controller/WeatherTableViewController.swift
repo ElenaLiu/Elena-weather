@@ -16,7 +16,7 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        ApiManager.share.delegate = self
+        ApiManager.share.delegate = self
 
         setUpLocationManager()
         
@@ -80,12 +80,12 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
 }
 
 extension WeatherTableViewController: ApiManagerDelegate {
-    
-    func ApiManager(_ manager: ApiManager, didGet data: WeatherResult) {
-        
+
+    func manager(_ manager: ApiManager, didGet data: Item) {
+        print(data)
     }
     
-    func ApiManager(_ manager: ApiManager, didFailWith error: ApiManagerError) {
+    func manager(_ manager: ApiManager, didFailWith error: ApiManagerError) {
         
     }
 }
