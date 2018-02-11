@@ -41,12 +41,35 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
         ApiManager.share.delegate = self
         
         tableView.separatorStyle = .none
-
+        
+        setUpRefreshControl()
+        
         setUpLocationManager()
         
-        let location = CLLocation(
-            latitude:  (locationManager.location?.coordinate.latitude)!,
-            longitude: (locationManager.location?.coordinate.longitude)!)
+    }
+    
+    func setUpLocationManager() {
+        
+        locationManager.delegate = self
+        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        
+        locationManager.startUpdatingLocation()
+        locationManager.startMonitoringSignificantLocationChanges()
+        
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        //get current location
+        let location: CLLocation = locations.last!
+        
+        fetchLocationAndWeatherData(location: location)
+    }
+    
+    func fetchLocationAndWeatherData(location: CLLocation) {
         
         fetchCountryAndCity(location: location) { city, error in
             if error != nil {
@@ -57,17 +80,29 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
             guard let cityName = city else { return }
             self.cityName = cityName
             ApiManager.share.getWeatherInfo(city: cityName)
-            
         }
     }
     
-    func setUpLocationManager() {
+    func setUpRefreshControl() {
         
-        locationManager.delegate = self
-        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-        locationManager.startMonitoringSignificantLocationChanges()
+        let refreshControl = UIRefreshControl()
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        refreshControl.addTarget(self, action: #selector(refreshWeatherData(_:)), for: .valueChanged)
+        
+        refreshControl.tintColor = UIColor(red:0.25, green:0.72, blue:0.85, alpha:1.0)
+
+        refreshControl.attributedTitle = NSAttributedString(string: "Fetching Weather Data ...")
+    }
+    
+    @objc private func refreshWeatherData(_ sender: Any) {
+        // Fetch Weather Data
+        setUpLocationManager()
+        //fetchLocationAndWeatherData()
     }
     
     func fetchCountryAndCity(location: CLLocation, completion: @escaping (String?, Error?) -> ()) {
@@ -77,7 +112,15 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
                 completion(nil, error)
             } else if let city = placemarks?.first?.locality {
                 //取出地址中的 City
-                completion(city, error)
+                let cityOnlyName = city.split(separator: " ")
+                
+                if let some = cityOnlyName.first {
+                    let value = String(some)
+                    
+                    completion(value, error)
+                } else {
+                    completion(city, error)
+                }
             }
         }
     }
@@ -150,6 +193,9 @@ extension WeatherTableViewController: ApiManagerDelegate {
     func manager(_ manager: ApiManager, didGet data: Item) {
     
         self.item = data
+        DispatchQueue.main.async {
+            self.refreshControl?.endRefreshing()
+        }
     }
     
     func manager(_ manager: ApiManager, didFailWith error: ApiManagerError) {
