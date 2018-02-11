@@ -39,6 +39,8 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
         super.viewDidLoad()
         
         ApiManager.share.delegate = self
+        
+        tableView.separatorStyle = .none
 
         setUpLocationManager()
         
@@ -79,7 +81,7 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
             }
         }
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
