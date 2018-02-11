@@ -1,5 +1,5 @@
 //
-//  WeatherTableViewCell.swift
+//  ConditionTableViewCell.swift
 //  elenaWeather
 //
 //  Created by 劉芳瑜 on 2018/2/10.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeatherTableViewCell: UITableViewCell {
+class ConditionTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
@@ -18,15 +18,4 @@ class WeatherTableViewCell: UITableViewCell {
     @IBOutlet weak var lowTempLabel: UILabel!
     @IBOutlet weak var todayLabel: UILabel!
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        
-    }
 }

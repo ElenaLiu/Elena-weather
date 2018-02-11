@@ -93,7 +93,11 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
         case .condition:
             return 1
         case .forecast:
-            return 1
+            if item != nil {
+                return (item?.forecast.count)! - 1
+            }else {
+                return 0
+            }
         }
     }
     
@@ -101,7 +105,7 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
         
         switch sections[indexPath.section] {
         case .condition:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherTableViewCell", for: indexPath) as! WeatherTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ConditionTableViewCell", for: indexPath) as! ConditionTableViewCell
             
             cell.cityLabel.text = cityName
             
@@ -122,9 +126,20 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
             
             return cell
         case .forecast:
-            return UITableViewCell()
+             let cell = tableView.dequeueReusableCell(withIdentifier: "ForecastTableViewCell", for: indexPath) as! ForecastTableViewCell
+             if item != nil{
+                let row = indexPath.row + 1
+                cell.dayLabel.text = item?.forecast[row].day
+                cell.statusLabel.text = item?.forecast[row].text
+                
+                let highTemp = self.fahrenheitToCelsius(fahrenheit: (item?.forecast[row].high)!)
+                let lowTemp = self.fahrenheitToCelsius(fahrenheit: (item?.forecast[row].low)!)
+                
+                cell.highTempLabel.text = highTemp
+                cell.lowTempLabel.text = lowTemp
+             }
+             return cell
         }
- 
     }
 }
 
@@ -133,12 +148,6 @@ extension WeatherTableViewController: ApiManagerDelegate {
     func manager(_ manager: ApiManager, didGet data: Item) {
     
         self.item = data
-        print(self.item)
-//        let condition = data.condition
-//        let forecast = data.forecast
-////        print(data)
-//        print(condition)
-//        print(forecast)
     }
     
     func manager(_ manager: ApiManager, didFailWith error: ApiManagerError) {
