@@ -11,9 +11,9 @@ import UIKit
 class ForecastTableViewCell: UITableViewCell {
 
     @IBOutlet weak var dayLabel: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var highTempLabel: UILabel!
     @IBOutlet weak var lowTempLabel: UILabel!
+    @IBOutlet weak var statusImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

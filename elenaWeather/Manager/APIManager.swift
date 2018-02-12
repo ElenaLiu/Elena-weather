@@ -57,6 +57,5 @@ class ApiManager {
             }
         }
         task.resume()
-
     }
 }

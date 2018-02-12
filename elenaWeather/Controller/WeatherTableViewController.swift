@@ -170,12 +170,59 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
             }
             
             return cell
+            
         case .forecast:
              let cell = tableView.dequeueReusableCell(withIdentifier: "ForecastTableViewCell", for: indexPath) as! ForecastTableViewCell
              if item != nil{
                 let row = indexPath.row + 1
                 cell.dayLabel.text = item?.forecast[row].day
-                cell.statusLabel.text = item?.forecast[row].text
+                
+                let statusCode: String = (item?.forecast[row].code)!
+                switch statusCode {
+                case "0", "1", "2":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "A")
+                case "3", "4":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "B")
+                case "5", "7", "35":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "C")
+                case "8", "9", "10", "11", "12":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "D")
+                case "13", "14", "15", "16":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "E")
+                case "17", "18":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "F")
+                case "19", "20", "21", "22":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "G")
+                case "23", "24":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "H")
+                case "25":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "I")
+                case "26", "28", "30", "40":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "J")
+                case "27", "29":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "L")
+                case "31", "33":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "M")
+                case "32", "34":
+                     cell.statusImageView.image = #imageLiteral(resourceName: "N")
+                case "36":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "O")
+                case "37":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "P")
+                case "38", "39":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "Q")
+                case "40":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "R")
+                case "41", "43":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "S")
+                case "42", "46":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "T")
+                case "45", "47":
+                    cell.statusImageView.image = #imageLiteral(resourceName: "U")
+                default:
+                    print("Not available")
+                }
+//                cell.statusLabel.text = item?.forecast[row].text
                 
                 let highTemp = self.fahrenheitToCelsius(fahrenheit: (item?.forecast[row].high)!)
                 let lowTemp = self.fahrenheitToCelsius(fahrenheit: (item?.forecast[row].low)!)

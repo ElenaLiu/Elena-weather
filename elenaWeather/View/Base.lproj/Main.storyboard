@@ -158,12 +158,9 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwc-jR-6uK">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uc8-YQ-5nH">
                                                     <rect key="frame" x="60" y="0.0" width="175" height="59.5"/>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="18"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3a7-ee-8ww">
                                                     <rect key="frame" x="235" y="0.0" width="60" height="59.5"/>
                                                     <constraints>
@@ -196,7 +193,7 @@
                                     <outlet property="dayLabel" destination="afs-C7-m0F" id="Vf5-25-quK"/>
                                     <outlet property="highTempLabel" destination="3a7-ee-8ww" id="f82-Dc-rcD"/>
                                     <outlet property="lowTempLabel" destination="Gz3-bz-Bk5" id="OxG-7f-Bwg"/>
-                                    <outlet property="statusLabel" destination="Mwc-jR-6uK" id="4Jo-nN-Wsi"/>
+                                    <outlet property="statusImageView" destination="uc8-YQ-5nH" id="fjg-5a-D9U"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
