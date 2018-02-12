@@ -129,6 +129,7 @@
                                         <constraint firstItem="E6A-py-g6h" firstAttribute="leading" secondItem="jnA-a5-vQp" secondAttribute="leading" constant="10" id="vGl-b1-fJM"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="cityLabel" destination="hOJ-r3-JgU" id="p6c-WO-MJa"/>
                                     <outlet property="dayLabel" destination="Vle-ak-L8O" id="GGL-R6-dk3"/>
@@ -189,6 +190,7 @@
                                         <constraint firstItem="vYW-x2-MOY" firstAttribute="leading" secondItem="JCt-uq-D8E" secondAttribute="leading" constant="10" id="kte-Yp-NfM"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dayLabel" destination="afs-C7-m0F" id="Vf5-25-quK"/>
                                     <outlet property="highTempLabel" destination="3a7-ee-8ww" id="f82-Dc-rcD"/>

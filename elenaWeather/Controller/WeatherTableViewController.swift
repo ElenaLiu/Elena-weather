@@ -57,8 +57,6 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
         
         locationManager.startUpdatingLocation()
         locationManager.startMonitoringSignificantLocationChanges()
-        
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -80,6 +78,79 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
             guard let cityName = city else { return }
             self.cityName = cityName
             ApiManager.share.getWeatherInfo(city: cityName)
+        }
+    }
+    
+    func setUpBackgroundImageView() {
+        
+        let blurEffect = UIBlurEffect(style: .extraLight)
+        
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        
+        let imageView = UIImageView()
+        self.tableView.backgroundView = imageView
+        imageView.contentMode = .scaleAspectFit
+
+        imageView.addSubview(blurView)
+        
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        blurView.leadingAnchor.constraint(
+            equalTo: imageView.leadingAnchor).isActive = true
+        blurView.trailingAnchor.constraint(
+            equalTo: imageView.trailingAnchor).isActive = true
+        blurView.topAnchor.constraint(
+            equalTo: imageView.topAnchor).isActive = true
+        blurView.bottomAnchor.constraint(
+            equalTo: imageView.bottomAnchor).isActive = true
+
+        if item != nil {
+            let statusCode: String = (item?.condition.code)!
+            
+            switch statusCode {
+            case "0", "1", "2":
+                imageView.image = #imageLiteral(resourceName: "A")
+            case "3", "4":
+                imageView.image = #imageLiteral(resourceName: "B")
+            case "5", "7", "35":
+                imageView.image = #imageLiteral(resourceName: "C")
+            case "8", "9", "10", "11", "12":
+                imageView.image = #imageLiteral(resourceName: "D")
+            case "13", "14", "15", "16":
+                imageView.image = #imageLiteral(resourceName: "E")
+            case "17", "18":
+                imageView.image = #imageLiteral(resourceName: "F")
+            case "19", "20", "21", "22":
+                imageView.image = #imageLiteral(resourceName: "G")
+            case "23", "24":
+                imageView.image = #imageLiteral(resourceName: "H")
+            case "25":
+                imageView.image = #imageLiteral(resourceName: "I")
+            case "26", "28", "30", "40":
+                imageView.image = #imageLiteral(resourceName: "J")
+            case "27", "29":
+                imageView.image = #imageLiteral(resourceName: "L")
+            case "31", "33":
+                imageView.image = #imageLiteral(resourceName: "M")
+            case "32", "34":
+                imageView.image = #imageLiteral(resourceName: "N")
+            case "36":
+                imageView.image = #imageLiteral(resourceName: "O")
+            case "37":
+                imageView.image = #imageLiteral(resourceName: "P")
+            case "38", "39":
+                imageView.image = #imageLiteral(resourceName: "Q")
+            case "40":
+                imageView.image = #imageLiteral(resourceName: "R")
+            case "41", "43":
+                imageView.image = #imageLiteral(resourceName: "S")
+            case "42", "46":
+                imageView.image = #imageLiteral(resourceName: "T")
+            case "45", "47":
+                imageView.image = #imageLiteral(resourceName: "U")
+            default:
+                imageView.image = #imageLiteral(resourceName: "na")
+                print("Not available")
+            }
         }
     }
     
@@ -178,6 +249,7 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
                 cell.dayLabel.text = item?.forecast[row].day
                 
                 let statusCode: String = (item?.forecast[row].code)!
+                
                 switch statusCode {
                 case "0", "1", "2":
                     cell.statusImageView.image = #imageLiteral(resourceName: "A")
@@ -220,9 +292,9 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
                 case "45", "47":
                     cell.statusImageView.image = #imageLiteral(resourceName: "U")
                 default:
+                    cell.statusImageView.image = #imageLiteral(resourceName: "na")
                     print("Not available")
                 }
-//                cell.statusLabel.text = item?.forecast[row].text
                 
                 let highTemp = self.fahrenheitToCelsius(fahrenheit: (item?.forecast[row].high)!)
                 let lowTemp = self.fahrenheitToCelsius(fahrenheit: (item?.forecast[row].low)!)
@@ -241,6 +313,7 @@ extension WeatherTableViewController: ApiManagerDelegate {
     
         self.item = data
         DispatchQueue.main.async {
+            self.setUpBackgroundImageView()
             self.refreshControl?.endRefreshing()
         }
     }
