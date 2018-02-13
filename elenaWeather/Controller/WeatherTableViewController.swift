@@ -83,72 +83,57 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
     
     func setUpBackgroundImageView() {
         
-        let blurEffect = UIBlurEffect(style: .extraLight)
-        
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        
         let imageView = UIImageView()
         self.tableView.backgroundView = imageView
-        imageView.contentMode = .scaleAspectFit
 
-        imageView.addSubview(blurView)
+        imageView.alpha = 0.5
         
-        blurView.translatesAutoresizingMaskIntoConstraints = false
-        blurView.leadingAnchor.constraint(
-            equalTo: imageView.leadingAnchor).isActive = true
-        blurView.trailingAnchor.constraint(
-            equalTo: imageView.trailingAnchor).isActive = true
-        blurView.topAnchor.constraint(
-            equalTo: imageView.topAnchor).isActive = true
-        blurView.bottomAnchor.constraint(
-            equalTo: imageView.bottomAnchor).isActive = true
-
+        imageView.contentMode = .scaleAspectFill
+        
         if item != nil {
-            let statusCode: String = (item?.condition.code)!
+            let statusCode: String = ""
+//                (item?.condition.code)!
             
             switch statusCode {
             case "0", "1", "2":
-                imageView.image = #imageLiteral(resourceName: "A")
-            case "3", "4":
-                imageView.image = #imageLiteral(resourceName: "B")
-            case "5", "7", "35":
-                imageView.image = #imageLiteral(resourceName: "C")
-            case "8", "9", "10", "11", "12":
-                imageView.image = #imageLiteral(resourceName: "D")
+                imageView.loadGif(name: "tornado")
+                
+            case "8", "9", "10", "11", "12", "40":
+                imageView.loadGif(name: "rain")
+                
             case "13", "14", "15", "16":
-                imageView.image = #imageLiteral(resourceName: "E")
+                imageView.loadGif(name: "raincloudy")
+                
             case "17", "18":
-                imageView.image = #imageLiteral(resourceName: "F")
+                imageView.loadGif(name: "sleet")
+                
             case "19", "20", "21", "22":
-                imageView.image = #imageLiteral(resourceName: "G")
+                imageView.loadGif(name: "foggy")
+                
             case "23", "24":
-                imageView.image = #imageLiteral(resourceName: "H")
-            case "25":
-                imageView.image = #imageLiteral(resourceName: "I")
-            case "26", "28", "30", "40":
-                imageView.image = #imageLiteral(resourceName: "J")
+                imageView.loadGif(name: "windy")
+                
+            case "26", "28", "30", "40", "44":
+                imageView.loadGif(name: "cloudy(day)")
+                
             case "27", "29":
-                imageView.image = #imageLiteral(resourceName: "L")
+                imageView.loadGif(name: "cloudy(night)")
+                
             case "31", "33":
-                imageView.image = #imageLiteral(resourceName: "M")
-            case "32", "34":
-                imageView.image = #imageLiteral(resourceName: "N")
-            case "36":
-                imageView.image = #imageLiteral(resourceName: "O")
-            case "37":
-                imageView.image = #imageLiteral(resourceName: "P")
-            case "38", "39":
-                imageView.image = #imageLiteral(resourceName: "Q")
-            case "40":
-                imageView.image = #imageLiteral(resourceName: "R")
-            case "41", "43":
-                imageView.image = #imageLiteral(resourceName: "S")
-            case "42", "46":
-                imageView.image = #imageLiteral(resourceName: "T")
-            case "45", "47":
-                imageView.image = #imageLiteral(resourceName: "U")
+                imageView.loadGif(name: "night")
+                
+            case "32", "34", "36":
+                imageView.loadGif(name: "sun")
+                
+            case "3", "4", "37", "38", "39", "45", "47":
+                imageView.loadGif(name: "thunderstorms")
+                
+            case "5", "7", "35", "25", "41", "43", "42", "46":
+                imageView.loadGif(name: "snow")
+                
             default:
                 imageView.image = #imageLiteral(resourceName: "na")
+                imageView.contentMode = .scaleAspectFit
                 print("Not available")
             }
         }
@@ -173,7 +158,6 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
     @objc private func refreshWeatherData(_ sender: Any) {
         // Fetch Weather Data
         setUpLocationManager()
-        //fetchLocationAndWeatherData()
     }
     
     func fetchCountryAndCity(location: CLLocation, completion: @escaping (String?, Error?) -> ()) {
@@ -224,7 +208,6 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
             let cell = tableView.dequeueReusableCell(withIdentifier: "ConditionTableViewCell", for: indexPath) as! ConditionTableViewCell
             
             cell.cityLabel.text = cityName
-            
             
             if item != nil {
                 
@@ -310,7 +293,7 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
 extension WeatherTableViewController: ApiManagerDelegate {
 
     func manager(_ manager: ApiManager, didGet data: Item) {
-    
+
         self.item = data
         DispatchQueue.main.async {
             self.setUpBackgroundImageView()

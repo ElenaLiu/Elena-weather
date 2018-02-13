@@ -69,7 +69,7 @@
                                                         <constraint firstAttribute="width" constant="60" id="Vsn-Oo-TUT"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
-                                                    <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -105,7 +105,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yJy-wr-ObJ">
-                                            <rect key="frame" x="0.0" y="244" width="375" height="3.5"/>
+                                            <rect key="frame" x="0.0" y="245" width="375" height="2.5"/>
                                             <color key="backgroundColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
                                     </subviews>
@@ -122,7 +122,7 @@
                                         <constraint firstAttribute="trailing" secondItem="4f2-1h-H6e" secondAttribute="trailing" constant="138" id="a57-QP-aOu"/>
                                         <constraint firstItem="hOJ-r3-JgU" firstAttribute="leading" secondItem="jnA-a5-vQp" secondAttribute="leading" constant="111" id="cPK-7A-BhY"/>
                                         <constraint firstAttribute="trailing" secondItem="hOJ-r3-JgU" secondAttribute="trailing" constant="111" id="css-g9-xSS"/>
-                                        <constraint firstItem="yJy-wr-ObJ" firstAttribute="top" secondItem="jnA-a5-vQp" secondAttribute="top" constant="244" id="gDF-QW-poL"/>
+                                        <constraint firstItem="yJy-wr-ObJ" firstAttribute="top" secondItem="jnA-a5-vQp" secondAttribute="top" constant="245" id="gDF-QW-poL"/>
                                         <constraint firstItem="yJy-wr-ObJ" firstAttribute="leading" secondItem="jnA-a5-vQp" secondAttribute="leading" id="hB2-QC-wD8"/>
                                         <constraint firstItem="HHr-Tg-P8S" firstAttribute="top" secondItem="4f2-1h-H6e" secondAttribute="bottom" constant="8" id="pFI-ov-zhB"/>
                                         <constraint firstAttribute="trailing" secondItem="HHr-Tg-P8S" secondAttribute="trailing" constant="100" id="rs5-39-dnS"/>
@@ -177,7 +177,7 @@
                                                         <constraint firstAttribute="width" constant="60" id="2ff-97-dbm"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
-                                                    <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
