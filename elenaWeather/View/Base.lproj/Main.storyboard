@@ -12,6 +12,9 @@
         <array key="Arial.ttf">
             <string>ArialMT</string>
         </array>
+        <array key="ArialBold.ttf">
+            <string>Arial-BoldMT</string>
+        </array>
         <array key="ArialRoundedMTBold.ttf">
             <string>ArialRoundedMTBold</string>
         </array>
@@ -44,22 +47,23 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="cu8-HO-1Sg"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccz-cb-Hax">
                                                     <rect key="frame" x="60" y="0.0" width="175" height="60"/>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
-                                                    <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="15"/>
+                                                    <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <size key="shadowOffset" width="0.0" height="-3"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSs-jD-9wE">
                                                     <rect key="frame" x="235" y="0.0" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="PAx-Yc-dVx"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -68,8 +72,8 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="Vsn-Oo-TUT"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
-                                                    <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="18"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -87,7 +91,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4f2-1h-H6e">
-                                            <rect key="frame" x="137" y="64" width="100" height="35"/>
+                                            <rect key="frame" x="40" y="64" width="295" height="35"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="1xU-Ex-22b"/>
                                             </constraints>
@@ -117,9 +121,9 @@
                                         <constraint firstItem="4f2-1h-H6e" firstAttribute="top" secondItem="hOJ-r3-JgU" secondAttribute="bottom" constant="8" id="LXt-6r-ruY"/>
                                         <constraint firstAttribute="trailing" secondItem="E6A-py-g6h" secondAttribute="trailing" constant="10" id="MWZ-MU-Tqj"/>
                                         <constraint firstItem="E6A-py-g6h" firstAttribute="top" secondItem="jnA-a5-vQp" secondAttribute="top" constant="187.5" id="Oas-6g-Cxb"/>
-                                        <constraint firstItem="4f2-1h-H6e" firstAttribute="leading" secondItem="jnA-a5-vQp" secondAttribute="leading" constant="137" id="P46-W5-Lu9"/>
+                                        <constraint firstItem="4f2-1h-H6e" firstAttribute="leading" secondItem="jnA-a5-vQp" secondAttribute="leading" constant="40" id="P46-W5-Lu9"/>
                                         <constraint firstItem="hOJ-r3-JgU" firstAttribute="top" secondItem="jnA-a5-vQp" secondAttribute="top" constant="11" id="Til-QN-WDx"/>
-                                        <constraint firstAttribute="trailing" secondItem="4f2-1h-H6e" secondAttribute="trailing" constant="138" id="a57-QP-aOu"/>
+                                        <constraint firstAttribute="trailing" secondItem="4f2-1h-H6e" secondAttribute="trailing" constant="40" id="a57-QP-aOu"/>
                                         <constraint firstItem="hOJ-r3-JgU" firstAttribute="leading" secondItem="jnA-a5-vQp" secondAttribute="leading" constant="111" id="cPK-7A-BhY"/>
                                         <constraint firstAttribute="trailing" secondItem="hOJ-r3-JgU" secondAttribute="trailing" constant="111" id="css-g9-xSS"/>
                                         <constraint firstItem="yJy-wr-ObJ" firstAttribute="top" secondItem="jnA-a5-vQp" secondAttribute="top" constant="245" id="gDF-QW-poL"/>
@@ -155,7 +159,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="Awz-Vd-GEI"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -167,7 +171,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="KbQ-6L-HPM"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -176,8 +180,8 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="2ff-97-dbm"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="16"/>
-                                                    <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="18"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>

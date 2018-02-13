@@ -86,49 +86,57 @@ class WeatherTableViewController: UITableViewController, CLLocationManagerDelega
         let imageView = UIImageView()
         self.tableView.backgroundView = imageView
 
-        imageView.alpha = 0.5
+        imageView.alpha = 0.6
         
         imageView.contentMode = .scaleAspectFill
         
         if item != nil {
-            let statusCode: String = ""
-//                (item?.condition.code)!
+            let statusCode: String = (item?.condition.code)!
             
             switch statusCode {
             case "0", "1", "2":
+                imageView.contentMode = .scaleToFill
                 imageView.loadGif(name: "tornado")
                 
             case "8", "9", "10", "11", "12", "40":
                 imageView.loadGif(name: "rain")
                 
             case "13", "14", "15", "16":
+                imageView.alpha = 0.8
                 imageView.loadGif(name: "raincloudy")
                 
             case "17", "18":
                 imageView.loadGif(name: "sleet")
                 
             case "19", "20", "21", "22":
+                imageView.alpha = 0.8
                 imageView.loadGif(name: "foggy")
                 
             case "23", "24":
                 imageView.loadGif(name: "windy")
                 
             case "26", "28", "30", "40", "44":
+                imageView.alpha = 0.8
                 imageView.loadGif(name: "cloudy(day)")
                 
             case "27", "29":
+                imageView.alpha = 0.7
                 imageView.loadGif(name: "cloudy(night)")
                 
             case "31", "33":
+                imageView.alpha = 0.8
                 imageView.loadGif(name: "night")
                 
             case "32", "34", "36":
+                imageView.alpha = 0.7
                 imageView.loadGif(name: "sun")
                 
             case "3", "4", "37", "38", "39", "45", "47":
+                imageView.alpha = 0.7
                 imageView.loadGif(name: "thunderstorms")
                 
             case "5", "7", "35", "25", "41", "43", "42", "46":
+                imageView.alpha = 0.7
                 imageView.loadGif(name: "snow")
                 
             default:
